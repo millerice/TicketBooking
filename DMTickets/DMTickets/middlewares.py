@@ -196,6 +196,8 @@ class FundscrapyDownloaderMiddleware(object):
             "Mozilla/4.0 (compatible; MSIE 6.0; ) Opera/UCWEB7.0.2.37/28/999",
             "Mozilla/6.0 (iPhone; CPU iPhone OS 8_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/8.0 Mobile/10A5376e Safari/8536.25",
         ]
+        # 填入目标网址
+        self.target_url = "https://detail.damai.cn/item.htm?spm=a2oeg.home.card_0.ditem_6.591b23e14gTCgT&id=610094000342"
 
     async def getbrowser(self):
         width, height = 1366, 768
@@ -280,34 +282,62 @@ class FundscrapyDownloaderMiddleware(object):
         print(nick_name)
         if nick_name == "城市猫哥":
             # cookies = await self.get_cookie(self.page)
+            # 不断循环，检测是否可以购买
             while True:
-                await self.page.goto("https://detail.damai.cn/item.htm?spm=a2oeg.search_category.0.0.7c0d18a9PdYRRa&id=611057434615&clicktitle=%E9%99%88%E5%A5%95%E8%BF%85Fear%20and%20Dreams%E4%B8%96%E7%95%8C%E5%B7%A1%E5%9B%9E%E6%BC%94%E5%94%B1%E4%BC%9A-%E4%B8%8A%E6%B5%B7%E7%AB%99",
-                                     options={'timeout': 30000, "waitUntil": "networkidle2"})
-                # content = await self.page.content()
-                # print(content)
-                # await self.page.click(".perform__order__select perform__order__select__performs > div.select_right > div.select_right_list > div.select_right_list_item")
-                # await self.page.click(".perform__order__select > div.select_right > div.select_right_list > div.select_right_list_item sku_item")
-                buybtn = await self.page.xpath("//div[@class='buybtn']//text()")
-                if buybtn:
-                    # print(buybtn)
-                    await self.page.click(".buybtn")
-                    await asyncio.sleep(2)
-                    # 滚动到页面底部
-                    # await self.page.evaluate('window.scrollBy(0, document.body.scrollHeight)')
+                page = await self.choose_tickets()
+                if page:
                     while True:
-                        order = await self.page.xpath("//div[@class='submit-wrapper']/button/text()")
-                        if order:
-                            print("exit order!")
-                            content = await self.page.content()
-                            print(content)
-                            await self.page.click(".next-checkbox-label")
-                            await self.page.click(".submit-wrapper > button")
-                            time.sleep(3000000)
+                        page = await self.submit_order()
+                        if page:
+                            time.sleep(3000)
                         else:
                             continue
-
                 else:
                     continue
+
+    # 选票
+    async def choose_tickets(self):
+        await self.page.goto(self.target_url, options={'timeout': 30000, "waitUntil": "networkidle2"})
+        # 添加选座功能
+        # await self.page.click(".perform__order__select perform__order__select__performs > div.select_right > div.select_right_list > div.select_right_list_item")
+        # await self.page.click(".perform__order__select > div.select_right > div.select_right_list > div.select_right_list_item sku_item")
+        # buybtn = await self.page.xpath("//div[@class='buybtn']//text()")
+        content = await self.page.content()
+        content = etree.HTML(content)
+        buybtn = content.xpath("//div[@class='buybtn']//text()")
+        print(buybtn[0])
+        if buybtn:
+            if buybtn[0] == "立即预订" or buybtn[0] == "立即购买":
+                await self.page.click(".buybtn")
+                await asyncio.sleep(1)
+                return True
+            else:
+                return None
+        else:
+            return None
+
+    # 提交订单
+    async def submit_order(self):
+        content = await self.page.content()
+        content = etree.HTML(content)
+        order = content.xpath("//div[@class='submit-wrapper']/button/text()")
+        if order:
+            print("exit order!")
+            content = await self.page.content()
+            print(content)
+            try:
+                await self.page.click(".next-checkbox-label")
+                await self.page.click(".submit-wrapper > button")
+                return True
+            except Exception as e:
+                print(e)
+                return await self.choose_tickets()
+        else:
+            return None
+
+
+        # else:
+        #     continue
 
 
     # 获取登录后cookie
