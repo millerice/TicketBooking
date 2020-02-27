@@ -7,7 +7,6 @@
 
 from scrapy import signals
 from fake_useragent import UserAgent
-# from tools.zhima_ip import GetIP
 import time, random, logging
 
 
@@ -106,7 +105,7 @@ class DmticketsDownloaderMiddleware(object):
         spider.logger.info('Spider opened: %s' % spider.name)
 
 
-# 随机更换user-agent
+# 随机更换user-agent（此项目中没有使用，但可以拿到其他项目中使用）
 class RandomUserAgentMiddlware(object):
     def __init__(self, crawler):
         super(RandomUserAgentMiddlware, self).__init__()
@@ -124,7 +123,7 @@ class RandomUserAgentMiddlware(object):
         request.headers.setdefault('User-Agent', get_ua())
 
 
-# 设置随机延时
+# 设置随机延时（此项目中没有使用，但可以拿到其他项目中使用）
 class RandomDelayMiddleware(object):
     def __init__(self, delay):
         self.delay = delay
@@ -197,14 +196,10 @@ class FundscrapyDownloaderMiddleware(object):
             "Mozilla/6.0 (iPhone; CPU iPhone OS 8_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/8.0 Mobile/10A5376e Safari/8536.25",
         ]
         # 填入目标网址
-        self.target_url = "https://detail.damai.cn/item.htm?spm=a2oeg.home.card_0.ditem_6.591b23e14gTCgT&id=610094000342"
+        self.target_url = "https://detail.damai.cn/item.htm?spm=a2oeg.search_category.0.0.47127d10ifFdQc&id=611057434615&clicktitle=%E9%99%88%E5%A5%95%E8%BF%85Fear%20and%20Dreams%E4%B8%96%E7%95%8C%E5%B7%A1%E5%9B%9E%E6%BC%94%E5%94%B1%E4%BC%9A-%E4%B8%8A%E6%B5%B7%E7%AB%99"
 
     async def getbrowser(self):
         width, height = 1366, 768
-        # get_ip = GetIP()
-        # proxy_ip = get_ip.get_random_ip()
-        # proxy_ip = proxy_ip.split("://")[1]
-        # print("当前使用的代理IP是" + proxy_ip)
         self.browser = await pyppeteer.launch(
             headless=False,
             # headless=True,
@@ -224,9 +219,6 @@ class FundscrapyDownloaderMiddleware(object):
                           '--mute-audio',
                           '--disable-setuid-sandbox',
                           '--disable-gpu',
-                          # '--headless',
-                          # f'--proxy-server=111.29.3.186:8080',
-                          # '--proxy-server={}'.format(proxy_ip),
                         ],
                     }
         )
@@ -247,6 +239,7 @@ class FundscrapyDownloaderMiddleware(object):
     def process_request(self, request, spider):
         usePypp = request.meta.get('usePypp', False)
         loop = asyncio.get_event_loop()
+        # 调用 Pyppeteer 方法
         if usePypp:
             task = asyncio.ensure_future(self.usePyppeteer(request))
             loop.run_until_complete(task)
@@ -257,7 +250,7 @@ class FundscrapyDownloaderMiddleware(object):
     async def usePyppeteer(self, request):
         num = random.randint(3, 6)
         await asyncio.sleep(num)
-        # UA
+        # UA 随机更换UA
         await self.page.setUserAgent(random.choice(self.user_agent))
         await self.page.setViewport({'width': 1366, 'height': 768})
         # 是否启用JS，enabled设为False，则无渲染效果
@@ -267,9 +260,8 @@ class FundscrapyDownloaderMiddleware(object):
         except Exception as e:
             print(e)
             print("error" * 100)
+        # 注入JS, 绕过浏览器检测
         await self.page.evaluate("""() =>{Object.defineProperties(navigator, {webdriver:{get: () => false}})}""")
-        # await self.page.evaluate(
-        #     '''() => {window.navigator.chrome = {runtime: {}, }; }''')
         await self.page.evaluate(
             '''() =>{Object.defineProperty(navigator, 'languages', {get: () => ['en-US', 'en']});}''')
         await self.page.evaluate(
@@ -280,8 +272,8 @@ class FundscrapyDownloaderMiddleware(object):
         content = etree.HTML(content)
         nick_name = content.xpath("//div[@class='span-box-header name-user show']/text()")[0]
         print(nick_name)
-        if nick_name == "城市猫哥":
-            # cookies = await self.get_cookie(self.page)
+        # 获取昵称，判断账号是否登录成功！注：此昵称要改为自己的昵称
+        if nick_name == "猫哥":
             # 不断循环，检测是否可以购买
             while True:
                 page = await self.choose_tickets()
@@ -295,7 +287,7 @@ class FundscrapyDownloaderMiddleware(object):
                 else:
                     continue
 
-    # 选票
+    # 选票功能 此处大家可以自由发挥，自行添加更多功能
     async def choose_tickets(self):
         await self.page.goto(self.target_url, options={'timeout': 30000, "waitUntil": "networkidle2"})
         # 添加选座功能
@@ -305,7 +297,6 @@ class FundscrapyDownloaderMiddleware(object):
         content = await self.page.content()
         content = etree.HTML(content)
         buybtn = content.xpath("//div[@class='buybtn']//text()")
-        print(buybtn[0])
         if buybtn:
             if buybtn[0] == "立即预订" or buybtn[0] == "立即购买":
                 await self.page.click(".buybtn")
@@ -323,8 +314,8 @@ class FundscrapyDownloaderMiddleware(object):
         order = content.xpath("//div[@class='submit-wrapper']/button/text()")
         if order:
             print("exit order!")
-            content = await self.page.content()
-            print(content)
+            # content = await self.page.content()
+            # print(content)
             try:
                 await self.page.click(".next-checkbox-label")
                 await self.page.click(".submit-wrapper > button")
@@ -334,22 +325,6 @@ class FundscrapyDownloaderMiddleware(object):
                 return await self.choose_tickets()
         else:
             return None
-
-
-        # else:
-        #     continue
-
-
-    # 获取登录后cookie
-    async def get_cookie(self, page):
-        # res = await self.page.content()
-        cookies_list = await page.cookies()
-        cookies = ''
-        for cookie in cookies_list:
-            str_cookie = '{0}={1};'
-            str_cookie = str_cookie.format(cookie.get('name'), cookie.get('value'))
-            cookies += str_cookie
-        return cookies
 
     def process_response(self, request, response, spider):
         return response

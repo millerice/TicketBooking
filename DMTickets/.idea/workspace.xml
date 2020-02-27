@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e4186b7e-dff8-40f7-9d63-0b41d374465b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/DMTickets.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/DMTickets.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DMTickets/middlewares.py" beforeDir="false" afterPath="$PROJECT_DIR$/DMTickets/middlewares.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DMTickets/spiders/dmspider.py" beforeDir="false" afterPath="$PROJECT_DIR$/DMTickets/spiders/dmspider.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,19 +15,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DMTickets/settings.py">
+        <entry file="file://$PROJECT_DIR$/DMTickets/spiders/dmspider.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="17" column="18" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DMTickets/pipelines.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="11" selection-start-line="11" selection-end-line="11" />
+            <state relative-caret-position="513">
+              <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
             </state>
           </provider>
         </entry>
@@ -37,33 +26,16 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/DMTickets/middlewares.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="222" column="58" lean-forward="true" selection-start-line="222" selection-start-column="58" selection-end-line="222" selection-end-column="58" />
+            <state relative-caret-position="422">
+              <caret line="272" column="80" lean-forward="true" selection-start-line="272" selection-start-column="80" selection-end-line="272" selection-end-column="80" />
               <folding>
                 <element signature="e#169#195#0" expanded="true" />
+                <element signature="e#344#2006#0" />
+                <element signature="e#2058#3701#0" />
+                <element signature="e#3765#4251#0" />
+                <element signature="e#4304#4863#0" />
                 <element signature="e#5494#9170#0" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
-              <folding>
-                <element signature="e#24#58#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DMTickets/spiders/dmspider.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="16" column="39" lean-forward="true" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -83,17 +55,17 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/DMTickets/settings.py" />
         <option value="$PROJECT_DIR$/main.py" />
-        <option value="$PROJECT_DIR$/DMTickets/spiders/dmspider.py" />
         <option value="$PROJECT_DIR$/../../virtualenvDir/py3.7/lib/python3.7/site-packages/pyppeteer/launcher.py" />
+        <option value="$PROJECT_DIR$/DMTickets/settings.py" />
+        <option value="$PROJECT_DIR$/DMTickets/spiders/dmspider.py" />
         <option value="$PROJECT_DIR$/DMTickets/middlewares.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="64" />
-    <option name="y" value="26" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="60" />
+    <option name="y" value="31" />
     <option name="width" value="1534" />
     <option name="height" value="975" />
   </component>
@@ -109,6 +81,17 @@
             <path>
               <item name="DMTickets" type="b2602c69:ProjectViewProjectNode" />
               <item name="DMTickets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DMTickets" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DMTickets" type="462c0819:PsiDirectoryNode" />
+              <item name="DMTickets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DMTickets" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DMTickets" type="462c0819:PsiDirectoryNode" />
+              <item name="DMTickets" type="462c0819:PsiDirectoryNode" />
+              <item name="spiders" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -175,15 +158,15 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="64" y="26" width="1534" height="975" extended-state="0" />
+    <frame x="60" y="31" width="1534" height="975" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21153846" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21153846" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3738426" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3738426" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -200,43 +183,61 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/../../virtualenvDir/py3.7/lib/python3.7/site-packages/pyppeteer/__init__.py" />
     <entry file="file://$PROJECT_DIR$/../../virtualenvDir/py3.7/lib/python3.7/site-packages/pyppeteer/launcher.py" />
-    <entry file="file://$PROJECT_DIR$/DMTickets/settings.py">
+    <entry file="file://$PROJECT_DIR$/../../../virtualenvDir/py3.7/lib/python3.7/site-packages/pyppeteer/connection.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="17" column="18" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
+        <state relative-caret-position="649">
+          <caret line="162" column="66" lean-forward="true" selection-start-line="162" selection-start-column="66" selection-end-line="162" selection-end-column="66" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DMTickets/pipelines.py">
+    <entry file="file://$PROJECT_DIR$/DMTickets/items.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DMTickets/spiders/dmspider.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="16" column="39" lean-forward="true" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
+          <caret line="11" column="48" lean-forward="true" selection-start-line="11" selection-start-column="48" selection-end-line="11" selection-end-column="48" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
-          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
           <folding>
             <element signature="e#24#58#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/DMTickets/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1425">
+          <caret line="75" lean-forward="true" selection-start-line="75" selection-end-line="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DMTickets/pipelines.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DMTickets/spiders/dmspider.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/DMTickets/middlewares.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="222" column="58" lean-forward="true" selection-start-line="222" selection-start-column="58" selection-end-line="222" selection-end-column="58" />
+        <state relative-caret-position="422">
+          <caret line="272" column="80" lean-forward="true" selection-start-line="272" selection-start-column="80" selection-end-line="272" selection-end-column="80" />
           <folding>
             <element signature="e#169#195#0" expanded="true" />
+            <element signature="e#344#2006#0" />
+            <element signature="e#2058#3701#0" />
+            <element signature="e#3765#4251#0" />
+            <element signature="e#4304#4863#0" />
             <element signature="e#5494#9170#0" />
           </folding>
         </state>

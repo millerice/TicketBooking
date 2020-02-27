@@ -24,4 +24,4 @@ class DmspiderSpider(scrapy.Spider):
         )
 
     def parse(self, response):
-        print(response.text)
+        print("success!")
